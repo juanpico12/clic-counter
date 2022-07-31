@@ -1,25 +1,38 @@
-import logo from './logo.svg';
 import './App.css';
-
+import Button from './components/Button';
+import logo from './images/logo.png'
+import Counter from './components/Counter';
+import { useState} from 'react'
 function App() {
+
+  const [numClics , setNumClics] = useState(0);
+
+  const manejarClic = () => {
+    setNumClics(numClics+1);
+  }
+
+  const resetCounter = () => {
+    setNumClics(0);
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className='logo-contenedor'>
+        <img className='logo' src={logo} alt='logo'/>
+      </div>
+      <div className='contenedor-principal'>
+        <Counter numClics={numClics} />
+        <Button texto='Click'
+        isClickButton={true}
+        manejarClic={manejarClic}/>
+        <Button texto='Reset'
+        isClickButton={false}
+        manejarClic={resetCounter}/>
+
+      </div>
     </div>
   );
 }
+
+
 
 export default App;
